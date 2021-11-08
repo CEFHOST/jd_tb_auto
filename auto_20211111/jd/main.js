@@ -99,17 +99,17 @@ function start() {
  */
 function enterActivity() {
     if (!text("累计任务奖励").exists()) {
-        sleep(4000);
+        sleep(5000);
         if (text("累计任务奖励").exists()) {
             console.info("已经在任务界面");
-            sleep(1000);
+            sleep(2000);
             headerXY = id("a96").findOne().bounds();
         } else {
             if (desc("浮层活动").exists()) {
                 console.info("点击浮层活动");
                 var huodong = desc("浮层活动").findOne().bounds();
                 randomClick(huodong.centerX(), huodong.centerY());
-                sleep(1000);
+                sleep(2000);
 
             }
 
@@ -123,7 +123,7 @@ function enterActivity() {
                 console.info("点击进入做任务界面")
                 var rect = button.findOne().bounds();
                 randomClick(rect.centerX(), rect.centerY());
-                sleep(1000);
+                sleep(2000);
                 headerXY = id("a96").findOne().bounds();
 
             } else {
@@ -135,7 +135,7 @@ function enterActivity() {
                 }
             }
         }
-        sleep(1000);
+        sleep(3000);
     }
 }
 
@@ -145,7 +145,7 @@ function enterActivity() {
  */
 function viewTask(flag) {
     // 根据坐标点击任务，判断哪些需要进行
-    sleep(2000);
+    sleep(5000);
     while (true && flag) {
         if ((textStartsWith("获得").exists() && textEndsWith("汪汪币").exists()) || text("已浏览").exists()) {
             console.info("任务完成，返回");
@@ -186,7 +186,7 @@ function viewTask(flag) {
         } else if (text("到底了，没有更多了～").exists() && !text("消息").exists() && !text("扫啊扫").exists()
             && !(textStartsWith("当前进度").exists() && textEndsWith("10").exists())) {
             console.info("到底了，没有更多了～");
-            sleep(1000);
+            sleep(2000);
             // 重置计时
             JUDGE_TIME = 0;
             var count = 0;
@@ -202,7 +202,7 @@ function viewTask(flag) {
                     sleep(6000);
                     if (!text("到底了，没有更多了～").exists()) {
                         if (id("aqw").click()) {
-                            sleep(2000);
+                            sleep(3000);
                             console.info("尝试返回", count);
                             back();
                             break;
@@ -216,13 +216,13 @@ function viewTask(flag) {
                 }
             }
             swipe(807, 314, 807, 414, 1);
-            sleep(2000);
+            sleep(3000);
             break;
         } else if (text("消息").exists() && text("扫啊扫").exists()) {
             console.warn("因为某些原因回到首页，重新进入活动界面");
             enterActivity();
         } else if (text("天天都能领").exists()) {
-            sleep(2000);
+            sleep(3000);
             console.info("天天都能领");
             // 重置计时
             JUDGE_TIME = 0;
@@ -232,14 +232,14 @@ function viewTask(flag) {
                 .drawingOrder(0)
                 .clickable().findOne().bounds();
             if (randomClick(button.centerX(), button.centerY())) {
-                sleep(1000);
+                sleep(2000);
                 console.log("点我收下");
                 if (back()) {
                     break;
                 }
             }
         } else if (text("邀请新朋友 更快赚现金").exists()) {
-            sleep(2000);
+            sleep(3000);
             console.info("邀请新朋友");
             // 重置计时
             JUDGE_TIME = 0;
@@ -252,7 +252,7 @@ function viewTask(flag) {
             while (click(button.right, y)) {
                 if (!text("累计任务奖励").exists()) {
                     back();
-                    sleep(3000);
+                    sleep(4000);
                     break;
                 } else{
                     y = y + 100;
@@ -264,7 +264,7 @@ function viewTask(flag) {
             back();
         } else if (isBackFlag) {
             console.info("进入浏览就返回任务");
-            sleep(2000);
+            sleep(3000);
             viewAndFollow();
             isBackFlag = false;
             break;
@@ -272,7 +272,7 @@ function viewTask(flag) {
             console.info("进入小程序任务");
             // 重置计时
             JUDGE_TIME = 0;
-            sleep(2000);
+            sleep(3000);
             launch(appName);
             isXcx = false;
             break;
@@ -296,7 +296,7 @@ function addMarketCar() {
         for (index = 0; index < productList.length; index++) {
             if (count == 5) {
                 if (back()) {
-                    sleep(3000)
+                    sleep(4000)
                     count = 0;
                     break;
                 }
@@ -305,11 +305,11 @@ function addMarketCar() {
                 // 重置计时
                 JUDGE_TIME = 0;
                 log("加入购物车任务:正在添加第" + (index + 1) + "个商品");
-                sleep(2000);
+                sleep(3000);
                 while (true) {
                     if (text("购物车").exists() && back()) {
                         count = count + 1;
-                        sleep(2000);
+                        sleep(3000);
                         if (!text("购物车").exists()) {
                             break;
                         }
@@ -332,9 +332,9 @@ function interactionGrassPlanting() {
             // 重置计时
             JUDGE_TIME = 0;
             console.info("去逛逛");
-            sleep(2000);
+            sleep(3000);
             if (back()) {
-                sleep(2000);
+                sleep(3000);
                 count = count + 1;
                 if (count == 5) {
                     return true;
@@ -391,9 +391,9 @@ function getNeedSelector() {
  * 返回
  */
 function viewAndFollow() {
-    sleep(1000);
+    sleep(2000);
     back();
-    sleep(3000);
+    sleep(4000);
 }
 
 /**
@@ -435,7 +435,7 @@ function transitioPperation() {
             } else {
                 text(PASS_LIST[index]).click();
             }
-            sleep(1000);
+            sleep(2000);
         }
     }
 }
@@ -450,7 +450,7 @@ function randomClick(x, y) {
     var ry = random(0, 5);
 
     click(x + rx, y + ry);
-    sleep(2000);
+    sleep(3000);
     return true;
 }
 
